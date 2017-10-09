@@ -2,7 +2,7 @@
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
 
-In this project I trained a deep neural network to classify images of german traffic signs.
+In this project I trained a deep neural network to classify images of german traffic signs as an assignment of the udacity self driving car nanodegree.
 
 Please take a look at the [Jupyter Notebook](https://github.com/FabianHertwig/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb) or the according .html file and the writeup for further information.
 
