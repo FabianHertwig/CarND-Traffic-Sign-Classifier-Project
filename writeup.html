@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>writeup</title>
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb
+}
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h1 id="toc_0"><strong>Traffic Sign Recognition</strong></h1>
+
+<p>In this project I trained a deep neural network to classify images of german traffic signs as an assignment of the udacity self driving car nanodegree. I augmented the images with random brightness, rotations, scaling, and shearing. I used the LeNet-5 architecture with more filters and dropout. I&#39;ve got an accuracy on the test set of 95,7 %.</p>
+
+<hr>
+
+<p><strong>Build a Traffic Sign Recognition Project</strong></p>
+
+<p>The goals / steps of this project are the following:</p>
+
+<ul>
+<li>Load the data set </li>
+<li>Explore, summarize and visualize the data set</li>
+<li>Design, train and test a model architecture</li>
+<li>Use the model to make predictions on new images</li>
+<li>Analyze the softmax probabilities of the new images</li>
+<li>Summarize the results with a written report</li>
+</ul>
+
+<h2 id="toc_1">Rubric Points</h2>
+
+<h3 id="toc_2">Here I will consider the <a href="https://review.udacity.com/#!/rubrics/481/view">rubric points</a> individually and describe how I addressed each point in my implementation.</h3>
+
+<hr>
+
+<h3 id="toc_3">Writeup / README</h3>
+
+<h4 id="toc_4">1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.</h4>
+
+<p>You&#39;re reading it! and here is a link to my <a href="https://github.com/FabianHertwig/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb">project code</a></p>
+
+<h3 id="toc_5">Data Set Summary &amp; Exploration</h3>
+
+<h4 id="toc_6">1. Basic summary of the data set.</h4>
+
+<p>I used the pandas library to calculate summary statistics of the traffic
+signs data set:</p>
+
+<ul>
+<li>The size of training set is 34799 observations.</li>
+<li>The size of the validation set is 12630 observations.</li>
+<li>The size of test set is 4410 observations.</li>
+<li>The shape of a traffic sign image is 32x32x3</li>
+<li>The number of unique classes/labels in the data set is 43.</li>
+</ul>
+
+<h4 id="toc_7">2. Exploratory visualization of the dataset.</h4>
+
+<p>Here is an exploratory visualization of the data set. There are multiple bar charts showing how the classes are distrubuted for the train, validation and test set.</p>
+
+<p>Class distribution is pretty much the same on each set, though there are more prominent classes than others. To improve results further, one could rebalance the class distribution with augmented images.</p>
+
+<p><img src="./writeup_sources/class_distributions.png" alt="class distributions"></p>
+
+<p>I also plotted some images for each class of the dataset to get an overview of what the images show. This is only a part of the plot, please view the notebook to see all classes.</p>
+
+<p><img src="./writeup_sources/class_examples.png" alt="class examples"></p>
+
+<p>The class distribution seem to be according to the distribution of the signs you see on german streets. For example class one, a speed limit of 20 km/h is very rare to see, as usally the speed limit in residential areas is 30 km/h. So there are only 180 images of this sign. There are up to 2000 images for the &quot;popular&quot; signs.</p>
+
+<p>As far as I know the images were taken from a car and multiple images of each sign were taken as the car moved by. Therfore the dateset contains the same image with different alterations in the angle or in brightness. Lets take a look at random pictures per class to see some different ones. Again, this is only a part of the plot, please view the notebook to see all classes.</p>
+
+<p><img src="./writeup_sources/class_examples_shuffled.png" alt="class examples shuffled"></p>
+
+<h3 id="toc_8">Design and Test a Model Architecture</h3>
+
+<h4 id="toc_9">1. Preprocessing and Augmentation</h4>
+
+<p>To train the net I prepocessed the images and also added augmented images.</p>
+
+<p>For preprocessing the images are normalized, so every image uses the full brightness spectrum from value 0 to value 255. This improves images that are very dark, but also adds shifts in colour. One could use better techniques to normalize the brightness, as converting in the HSL colorspace and normalize brighntess there. </p>
+
+<p>Normalizing the images improved the accuracy of the net.</p>
+
+<p>For augmentation random brightness got added and then the images got normalized. Brightness is added before normalizing, to emulate different conditions when the picture was taken. Also random translations, rotations, sheering and scaling were added. These augmentation techniques are used quite often with image recognition tasks and should improve overfitting. For example the  in the famous <a href="http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks">ImageNet Classification with Deep Convolutional Neural Networks paper</a> image translations, mirroring and changes in colour were used. I decided not to mirror the images as you would not encounter a mirrored sign in the real world.</p>
+
+<p>At last the image values where converted to a -1.0 to 1.0 range for deep learning.</p>
+
+<p>Following are examples for the augmentations steps.</p>
+
+<p>Original Image:<br>
+<img src="./writeup_sources/augmentation/1orig.png" alt="original image"></p>
+
+<p>Random Brightness added to the Image:<br>
+<img src="./writeup_sources/augmentation/2bright.png" alt="Random Brightness"></p>
+
+<p>Pixel intensity normalized:<br>
+<img src="./writeup_sources/augmentation/3normalize.png" alt="normalized image"></p>
+
+<p>Shear, translation, rotation and scale added to the Image. This is done in one step using a transformation matrix.<br>
+<img src="./writeup_sources/augmentation/3warp.png" alt="warped image"></p>
+
+<p>For each image in the original training set I added five augmented images.</p>
+
+<p>Here are a few more examples:
+<img src="./writeup_sources/augmentation/examples.png" alt="warped images"></p>
+
+<h4 id="toc_10">2. The final model architecture</h4>
+
+<p>Below is a table of the architecture. It is the same as the LeNet-5 architecture with more filters and therefore more fully connected nodes.</p>
+
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Input</td>
+<td>32x32x3 Image Data</td>
+</tr>
+<tr>
+<td>Convolution 5x5</td>
+<td>Valid Padding, 1x1 Strides, 28x28x16 Output</td>
+</tr>
+<tr>
+<td>Relu</td>
+<td></td>
+</tr>
+<tr>
+<td>Max Pool</td>
+<td>2x2 Strides, 14x14x16 Output</td>
+</tr>
+<tr>
+<td>Convolution 5x5</td>
+<td>Valid Padding, 1x1 Strides, 10x10x32 Output</td>
+</tr>
+<tr>
+<td>Relu</td>
+<td></td>
+</tr>
+<tr>
+<td>Max Pool</td>
+<td>2x2 Strides, 5x5x32 Output</td>
+</tr>
+<tr>
+<td>Flatten</td>
+<td>800 Output</td>
+</tr>
+<tr>
+<td>Fully Connected</td>
+<td>200 Output</td>
+</tr>
+<tr>
+<td>Relu</td>
+<td></td>
+</tr>
+<tr>
+<td>Fully Connected</td>
+<td>100 Output</td>
+</tr>
+<tr>
+<td>Relu</td>
+<td></td>
+</tr>
+<tr>
+<td>Dropout</td>
+<td>50% Keep Probability</td>
+</tr>
+<tr>
+<td>Fully Connected</td>
+<td>Output 43</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="toc_11">3. Hyperparameters and training approach.</h4>
+
+<p>I used the same architecture as the LeNet-5 net, as it was build for image classification tasks. Also most of the code got implemented earlier in the nanodegree so it seemed obvious to reuse the code.</p>
+
+<p>To improve the accuracy of the net, I increased the filters and therefore I had to increase the number of fully connected neurons accordingly. At first I started with quite a lot of filters, and a lot of neurons. Then I decreased the filters step by step to prevent overfitting  until I got good results. </p>
+
+<p>I tried to create an overfitting model first, so I know that the model is able to learn the concepts. Then I tried to decrease overfitting by decreasing the number of filters, adding a dropout layer with a 50% keep probability and image augmentation.</p>
+
+<p>I used the <strong>adam optimizer</strong> with its default <strong>learning rate of 0.001</strong>. I tried to lower the training rate, but that seemed to increase training time without accuracy improvements. The adam optimizer should addapt the training rate anyways.</p>
+
+<p>I also tried to increase the batch size until I run in memory issues, but that seemed to lower the accuracy somehow. So I kept the <strong>batch size at 512</strong>. The model ran for <strong>30 Epochs</strong>, but it didn&#39;t improve after 20.</p>
+
+<p>As a final result I got a validation accuracy of 0.951 and test accuracy of 0.957. </p>
+
+<p>In the loss chart below you can see that validations loss starts to rise again after about 10 Epochs of training. That shows that the net is still overfitting, but I&#39;m happy with the results it produces anyways.</p>
+
+<p><img src="./writeup_sources/train_loss_graph.png" alt="warped images"></p>
+
+<p>This are examples for the most confused classes from most confusions to less confusions. The signs are very similiar indeed. </p>
+
+<p><img src="./writeup_sources/top_confused1.png" alt="warped images"><br>
+<img src="./writeup_sources/top_confused2.png" alt="warped images"><br>
+<img src="./writeup_sources/top_confused3.png" alt="warped images"><br>
+<img src="./writeup_sources/top_confused4.png" alt="warped images"></p>
+
+<h3 id="toc_12">Test a Model on New Images</h3>
+
+<h4 id="toc_13">1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.</h4>
+
+<p>As I life in Germany, I drove around and took some images. I mounted my Phone behind my windshield to take the images. The windscreen was quite dirty, from time to time it was raining. So the images will be challenging. Also there is one 120 km/h speed limit image which was displayed with LEDs and the signs background is black instead of white. Im curious if that one gets recognized by the net.</p>
+
+<p>Here is one example how the image was taken and for the dirty windshield in the corner :)</p>
+
+<p><img src="./images/example.jpg" alt="camera position"></p>
+
+<p>Here are the images I have chosen:</p>
+
+<p><img src="./writeup_sources/own_images_examples.png" alt="my signs"></p>
+
+<h4 id="toc_14">2. Predictions power on new traffic signs</h4>
+
+<p>Here are the results of the prediction:</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center"><strong>Prediction</strong></th>
+<th style="text-align: center"><strong>True Class</strong></th>
+<th style="text-align: center"><strong>SignName Prediction</strong></th>
+<th style="text-align: center"><strong>SignName True Class</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: center">12</td>
+<td style="text-align: center">12</td>
+<td style="text-align: center">Priority road</td>
+<td style="text-align: center">Priority road</td>
+</tr>
+<tr>
+<td style="text-align: center">18</td>
+<td style="text-align: center">18</td>
+<td style="text-align: center">General caution</td>
+<td style="text-align: center">General caution</td>
+</tr>
+<tr>
+<td style="text-align: center">18</td>
+<td style="text-align: center">18</td>
+<td style="text-align: center">General caution</td>
+<td style="text-align: center">General caution</td>
+</tr>
+<tr>
+<td style="text-align: center">2</td>
+<td style="text-align: center">2</td>
+<td style="text-align: center">Speed limit (50km/h)</td>
+<td style="text-align: center">Speed limit (50km/h)</td>
+</tr>
+<tr>
+<td style="text-align: center">3</td>
+<td style="text-align: center">3</td>
+<td style="text-align: center">Speed limit (60km/h)</td>
+<td style="text-align: center">Speed limit (60km/h)</td>
+</tr>
+<tr>
+<td style="text-align: center">5</td>
+<td style="text-align: center">8</td>
+<td style="text-align: center">Speed limit (80km/h)</td>
+<td style="text-align: center">Speed limit (120km/h)</td>
+</tr>
+<tr>
+<td style="text-align: center">8</td>
+<td style="text-align: center">8</td>
+<td style="text-align: center">Speed limit (120km/h)</td>
+<td style="text-align: center">Speed limit (120km/h)</td>
+</tr>
+</tbody>
+</table>
+
+<p><img src="./writeup_sources/own_image_prediction1.png" alt="sign and prediction"><br>
+<img src="./writeup_sources/own_image_prediction2.png" alt="sign and prediction"><br>
+<img src="./writeup_sources/own_image_prediction3.png" alt="sign and prediction"><br>
+<img src="./writeup_sources/own_image_prediction4.png" alt="sign and prediction"><br>
+<img src="./writeup_sources/own_image_prediction7.png" alt="sign and prediction"><br>
+<img src="./writeup_sources/own_image_prediction5.png" alt="sign and prediction"><br>
+<img src="./writeup_sources/own_image_prediction6.png" alt="sign and prediction">  </p>
+
+<p>The model confused some of the images. I really don&#39;t know how it confused class &quot;General caution&quot; with &quot;No entry&quot;. To confuse the very different Speed Limit (120km/h) sign seems reasonable. </p>
+
+<p>On these images the model got an accuracy of 71% which is worse than on the testset. But these images are harder to classify bacause of the noise added by the rain and there is one sign that the model has never seen before.</p>
+
+<h4 id="toc_15">3. Softmax Probabilities</h4>
+
+<p>Below you can see the top 5 class propabilities for each of my own images.
+The model has lower probabilities on &quot;general caution&quot; sign, as there are very similiar signs with also higher probabilities. Also the led speed limit sign has low probabilities as the model has never seen such a led sign.</p>
+
+<p><img src="./writeup_sources/own_image_prediction1.png" alt="sign and prediction"></p>
+
+<p><img src="./writeup_sources/softmaxprobs1.png" alt="sign and prediction"></p>
+
+<hr>
+
+<p><img src="./writeup_sources/own_image_prediction2.png" alt="sign and prediction"></p>
+
+<p><img src="./writeup_sources/softmaxprobs2.png" alt="sign and prediction"></p>
+
+<hr>
+
+<p><img src="./writeup_sources/own_image_prediction3.png" alt="sign and prediction"></p>
+
+<p><img src="./writeup_sources/softmaxprobs3.png" alt="sign and prediction"></p>
+
+<hr>
+
+<p><img src="./writeup_sources/own_image_prediction4.png" alt="sign and prediction"></p>
+
+<p><img src="./writeup_sources/softmaxprobs4.png" alt="sign and prediction"></p>
+
+<hr>
+
+<p><img src="./writeup_sources/own_image_prediction7.png" alt="sign and prediction"></p>
+
+<p><img src="./writeup_sources/softmaxprobs5.png" alt="sign and prediction"></p>
+
+<hr>
+
+<p><img src="./writeup_sources/own_image_prediction5.png" alt="sign and prediction"></p>
+
+<p><img src="./writeup_sources/softmaxprobs6.png" alt="sign and prediction"></p>
+
+<hr>
+
+<p><img src="./writeup_sources/own_image_prediction6.png" alt="sign and prediction"></p>
+
+<p><img src="./writeup_sources/softmaxprobs7.png" alt="sign and prediction"></p>
+
+<hr>
+
+<h3 id="toc_16">Visualizing the Neural Network</h3>
+
+<p>Below you can see the activation map for the relu output of the first convolutional layer.</p>
+
+<p>In this activations, you can clearly recognize the number, the round shape and that there is a ring. FeatureMap 8 seems to look for a dark sign in front of a bright background.</p>
+
+<p><img src="./writeup_sources/featuremap1.png" alt="feature map"></p>
+
+<p>With this other sign but still activations from layer one it is really hard to recognize the numbers and the shape of the sign. Though the model still predicted the correct class.</p>
+
+<p><img src="./writeup_sources/featuremap2.png" alt="feature map"></p>
+
+<p>This is the 120km/h sign displayed with leds, that got confused with another image. I wonder why, as the activation map doesn&#39;t seem too different to the other activation maps of speed limit signs.</p>
+
+<p><img src="./writeup_sources/featuremap3.png" alt="feature map"></p>
+
+<p>This is the seconds layer activiation. You can&#39;t really see a lot, as the resolution is very low. Maybe I should try to remove the maxpool layers as they lower the resolution... another time :)</p>
+
+<p><img src="./writeup_sources/featuremap4.png" alt="feature map"></p>
+
+
+
+
+</body>
+
+</html>
