@@ -1,10 +1,10 @@
-#**Traffic Sign Recognition** 
+# Traffic Sign Recognition 
 
 In this project I trained a deep neural network to classify images of german traffic signs as an assignment of the udacity self driving car nanodegree. I augmented the images with random brightness, rotations, scaling, and shearing. I used the LeNet-5 architecture with more filters and dropout. I've got an accuracy on the test set of 95,7 %.
 
 ---
 
-**Build a Traffic Sign Recognition Project**
+### Build a Traffic Sign Recognition Project
 
 The goals / steps of this project are the following:
 
@@ -16,30 +16,19 @@ The goals / steps of this project are the following:
 * Summarize the results with a written report
 
 
-[//]: # (Image References)
-
-[image1]: ./examples/visualization.jpg "Visualization"
-[image2]: ./examples/grayscale.jpg "Grayscaling"
-[image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
-
 ## Rubric Points
-###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
+### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
 
 ---
-###Writeup / README
+### Writeup / README
 
-####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. 
+#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. 
 
 You're reading it! and here is a link to my [project code](https://github.com/FabianHertwig/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
 
-###Data Set Summary & Exploration
+### Data Set Summary & Exploration
 
-####1. Basic summary of the data set. 
+#### 1. Basic summary of the data set. 
 
 I used the pandas library to calculate summary statistics of the traffic
 signs data set:
@@ -50,7 +39,7 @@ signs data set:
 * The shape of a traffic sign image is 32x32x3
 * The number of unique classes/labels in the data set is 43.
 
-####2. Exploratory visualization of the dataset.
+#### 2. Exploratory visualization of the dataset.
 
 Here is an exploratory visualization of the data set. There are multiple bar charts showing how the classes are distrubuted for the train, validation and test set.
 
@@ -68,9 +57,9 @@ As far as I know the images were taken from a car and multiple images of each si
 
 ![class examples shuffled](./writeup_sources/class_examples_shuffled.png)
 
-###Design and Test a Model Architecture
+### Design and Test a Model Architecture
 
-####1. Preprocessing and Augmentation
+#### 1. Preprocessing and Augmentation
 
 
 To train the net I prepocessed the images and also added augmented images.
@@ -104,9 +93,7 @@ Here are a few more examples:
 ![warped images](./writeup_sources/augmentation/examples.png)
 
 
-
-
-####2. The final model architecture
+#### 2. The final model architecture
 
 Below is a table of the architecture. It is the same as the LeNet-5 architecture with more filters and therefore more fully connected nodes.
 
@@ -127,7 +114,7 @@ Below is a table of the architecture. It is the same as the LeNet-5 architecture
 | Dropout         | 50% Keep Probability                        |
 | Fully Connected | Output 43                                   |
 
-####3. Hyperparameters and training approach.
+#### 3. Hyperparameters and training approach.
 I used the same architecture as the LeNet-5 net, as it was build for image classification tasks. Also most of the code got implemented earlier in the nanodegree so it seemed obvious to reuse the code.
 
 To improve the accuracy of the net, I increased the filters and therefore I had to increase the number of fully connected neurons accordingly. At first I started with quite a lot of filters, and a lot of neurons. Then I decreased the filters step by step to prevent overfitting  until I got good results. 
@@ -154,9 +141,9 @@ This are examples for the most confused classes from most confusions to less con
 
 
 
-###Test a Model on New Images
+### Test a Model on New Images
 
-####1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
+#### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
 
 As I life in Germany, I drove around and took some images. I mounted my Phone behind my windshield to take the images. The windscreen was quite dirty, from time to time it was raining. So the images will be challenging. Also there is one 120 km/h speed limit image which was displayed with LEDs and the signs background is black instead of white. Im curious if that one gets recognized by the net.
 
@@ -169,7 +156,7 @@ Here are the images I have chosen:
 ![my signs](./writeup_sources/own_images_examples.png)
 
 
-####2. Predictions power on new traffic signs
+#### 2. Predictions power on new traffic signs
 
 Here are the results of the prediction:
 
@@ -198,7 +185,7 @@ The model confused some of the images. I really don't know how it confused class
 
 On these images the model got an accuracy of 71% which is worse than on the testset. But these images are harder to classify bacause of the noise added by the rain and there is one sign that the model has never seen before.
 
-####3. Softmax Probabilities
+#### 3. Softmax Probabilities
 
 Below you can see the top 5 class propabilities for each of my own images.
 The model has lower probabilities on "general caution" sign, as there are very similiar signs with also higher probabilities. Also the led speed limit sign has low probabilities as the model has never seen such a led sign.
